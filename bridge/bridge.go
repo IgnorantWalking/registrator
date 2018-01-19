@@ -317,6 +317,8 @@ var dockerSignaledBit = 128
 func (b *Bridge) shouldRemove(containerId string) bool {
 	if b.config.DeregisterCheck == "always" {
 		return true
+	}else if b.config.DeregisterCheck == "never" {
+		return false
 	}
 	container, err := b.docker.InspectContainer(containerId)
 	if _, ok := err.(*dockerapi.NoSuchContainer); ok {
