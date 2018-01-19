@@ -93,8 +93,8 @@ func main() {
 	docker, err := dockerapi.NewClientFromEnv()
 	assert(err)
 
-	if *deregister != "always" && *deregister != "on-success" {
-		assert(errors.New("-deregister must be \"always\" or \"on-success\""))
+	if *deregister != "always" && *deregister != "never" && *deregister != "on-success" {
+		assert(errors.New("-deregister must be \"never\" or \"always\" or \"on-success\""))
 	}
 
 	b, err := bridge.New(docker, flag.Arg(0), bridge.Config{
